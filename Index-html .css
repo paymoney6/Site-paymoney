@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante belo horizonte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --vermelho-principal: #8B0000;
+            --vermelho-claro: #A52A2A;
+            --j: #D4AF37;
+            --bege: #F5F5DC;
+            --cinza-escuro: #333333;
+            --branco: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bege);
+            color: var(--cinza-escuro);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--vermelho-principal);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--dourado);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--dourado);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--vermelho-principal);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--vermelho-claro);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--vermelho-principal);
+            color: var(--vermelho-principal);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--vermelho-principal);
+            color: white;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--vermelho-principal);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--dourado);
+            margin: 0.5rem auto;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background-color: white;
+            border: 1px solid var(--vermelho-principal);
+            color: var(--vermelho-principal);
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--vermelho-principal);
+            color: white;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item h3 {
+            color: var(--vermelho-principal);
+        }
+        
+        .price {
+            color: var(--dourado);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .menu-item p {
+            color: var(--cinza-escuro);
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            background-color: var(--vermelho-principal);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--vermelho-claro);
+        }
+        
+        .reservation-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--cinza-escuro);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--vermelho-principal);
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        footer {
+            background-color: var(--vermelho-principal);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--dourado);
+        }
+        
+        .footer-info {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            color: var(--dourado);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cart-content {
+            background-color: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--cinza-escuro);
+            transition: color 0.3s;
+        }
+        
+        .close-cart:hover {
+            color: var(--vermelho-principal);
+        }
+        
+        .cart-items {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .cart-item-price {
+            color: var(--dourado);
+            font-weight: bold;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background-color: #f0f0f0;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .remove-item {
+            color: var(--vermelho-principal);
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+        
+        .checkout-btn {
+            background-color: var(--vermelho-principal);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--vermelho-claro);
+        }
+        
+        .cart-icon {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--vermelho-principal);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--dourado);
+            color: var(--cinza-escuro);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--vermelho-principal);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            transition: opacity 0.3s;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Belo <span>horizonte</span></div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#inicio" class="active">Início</a></li>
+                        <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#reservas">Reservas</a></li>
+                        <li><a href="#Grupo">Grupo</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Gastronomia Moçambicana</h1>
+            <p>Descubra os sabores tradicionais do Belo Horizonte em um ambiente acolhedor e familiar. Pratos preparados com ingredientes frescos e receitas passadas de geração em geração.</p>
+            <div>
+                <a href="#cardapio" class="btn">Ver Cardápio</a>
+                <a href="#reservas" class="btn btn-secondary">Fazer Reserva</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cardapio">
+        <div class="container">
+            <h2 class="section-title">Nosso Cardápio</h2>
+            
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="todos">Todos</button>
+                
+            
+            </div>
+            
+            <div class="menu-items">
+                <!-- Prato 1 -->
+                <div class="menu-item" data-category="pratos-principais">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeaBkqcgLb_WYTF4c7-TZ3aZ4j4d5rBMqtws7vtmsRdw&s=10" alt="Arroz com feijão">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Arroz com feijão</h3>
+                            <span class="price">MZN150.00</span>
+                        </div>
+                        <p>Arroz com feijão.</p>
+                        <button class="add-to-cart" data-name="Arroz com feijão" data-price="150.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Prato 2 -->
+                <div class="menu-item" data-category="pratos-principais">
+                    <img src="https://www.foodfromportugal.com/content/uploads/2013/07/frango-guisado-esparguete-04.jpg" alt="Frango e Esparguete">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Frango e Esparguete</h3>
+                            <span class="price">MZN220.00</span>
+                        </div>
+                        <p>Este ultra macio e cremoso frango guisado com esparguete é a refeição perfeita para um jantar em .</p>
+                        <button class="add-to-cart" data-name="Frango e Esparguete" data-price="220.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Prato 3 -->
+                <div class="menu-item" data-category="entradas">
+                    <img src="https://sabores-new.s3.amazonaws.com/public/2024/11/arroz-integral-com-frango-e-legumes.jpg">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Arroz Legumes</h3>
+                            <span class="price">MZN200.00</span>
+                        </div>
+                        <p>arroz integral com frango e legumes.</p>
+                        <button class="add-to-cart" data-name="Arroz Legumes" data-price="200.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Prato 4 -->
+                <div class="menu-item" data-category="pratos-principais">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTBlaiuTz_vJV6GbScQSSijWSJip-pQxgsJZbbfR2NMQ&s=10" alt="Frango Frito e Batata Frita">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Frango Frito e Batata Frita</h3>
+                            <span class="price">MZN260.00</span>
+                        </div>
+                        <p>Frango Frito e Batata Frita.</p>
+                        <button class="add-to-cart" data-name="Frango Frito e Batata Frita" data-price="260.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Prato 5 -->
+                <div class="menu-item" data-category="sobremesas">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlqA7aiI4iSzjpoBEYfjJ4AsJJ7rQr64RsE-dGb2dl9u-NyM0q81AwrsiX&s=10" alt="sucos naturais">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>sucos naturais</h3>
+                            <span class="price">MZN95.00</span>
+                        </div>
+                        <p>sucos naturais.</p>
+                        <button class="add-to-cart" data-name="sucos naturais" data-price="95.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Prato 6 -->
+                <div class="menu-item" data-category="bebidas">
+                    <img src="https://i.pinimg.com/originals/c8/a1/a9/c8a1a99934704686dc2a7f075760d0e5.jpg" alt="Xima com peixe seco">
+                    <div class="menu-item-content">
+                        <div class="menu-item-title">
+                            <h3>Xima com peixe seco</h3>
+                            <span class="price">MZN250.00</span>
+                        </div>
+                        <p>Peixe seco frito com molho de tomate e xima.</p>
+                        <button class="add-to-cart" data-name="Xima com peixe seco" data-price="250.00">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservas">
+        <div class="container">
+            <h2 class="section-title">Faça sua Reserva</h2>
+            
+            <div class="reservation-form">
+                <form id="reservationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Número de Pessoas</label>
+                            <select id="guests" class="form-control" required>
+                                <option value="">Selecione</option>
+                                <option value="1">1 pessoa</option>
+                                <option value="2">2 pessoas</option>
+                                <option value="3">3 pessoas</option>
+                                <option value="4">4 pessoas</option>
+                                <option value="5">5 pessoas</option>
+                                <option value="6">6 pessoas</option>
+                                <option value="7">7 pessoas</option>
+                                <option value="8">8 pessoas</option>
+                                <option value="9">9 pessoas ou mais</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Data</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Horário</label>
+                            <input type="time" id="time" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special-requests">Pedidos Especiais</label>
+                        <textarea id="special-requests" class="form-control" rows="4" placeholder="Alguma solicitação especial?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer id="Grupo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Elementos do <span>Grupo-B2</span>
+</div> <p>Amisse Issufo Nº 6</p>
+<p>Bibiana José Silva Nº 12</p>
+<p>Gildo Jorge Latino Nº 39</p>
+<p>Irene Viagem Fernando Sábado Nº44</p> <p>Jorgina Domingos Nº 46</p>
+<p>Hiene Ibraimo Nº41</p>   
+<p>Mariza Martins Nº54</p>
+<p>Miricelia Adamo Atumane Nº 57</p>
+<p>Sofia Abacar Nº66</p>
+<p>Tamires da Zita Jamal Nº 67</p>
+<p>Carlos victorino Nº 74</p>
+<p>Miriam Filipe</p>
+<p>Heltina Manuel</p>
+</div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2025 Restaurante Belo horizonte. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Seu Pedido</h3>
+                <button class="close-cart" id="closeCart">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            </div>
+            
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">MZN 0,00</span>
+            </div>
+            
+            <button class="checkout-btn" id="checkoutBtn">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h3>Reserva Confirmada!</h3>
+            <p>Sua reserva foi enviada com sucesso. Entraremos em contato em breve para confirmação.</p>
+            <div class="modal-buttons">
+                <button class="btn" id="closeSuccessModal">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Navegação suave
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Fechar menu mobile após clicar em um link
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            });
+        });
+        
+        // Ativar link ativo na navegação
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Filtro de categorias do cardápio
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove a classe active de todos os botões
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Adiciona a classe active ao botão clicado
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                const menuItems = document.querySelectorAll('.menu-item');
+                
+                menuItems.forEach(item => {
+                    if (category === 'todos' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Funcionalidade do carrinho
+        let cart = [];
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        // Adicionar item ao carrinho
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Verifica se o item já está no carrinho
+                const existingItem = cart.find(item => item.name === name);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        name: name,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                showNotification(`${name} adicionado ao carrinho!`);
+            });
+        });
+
+        // Atualizar carrinho
+        function updateCart() {
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center;">Seu carrinho está vazio</p>';
+                cartTotal.textContent = 'MZN 0,00';
+                return;
+            }
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>MZN ${item.price.toFixed(2)}</p>
+                        <div class="cart-item-actions">
+                            <button class="quantity-btn decrease-quantity" data-index="${index}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn increase-quantity" data-index="${index}">+</button>
+                            <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="cart-item-price">MZN ${itemTotal.toFixed(2)}</div>
+                `;
+                
+                cartItems.appendChild(cartItemElement);
+            });
+            
+            cartTotal.textContent = `MZN ${total.toFixed(2)}`;
+            
+            // Adicionar event listeners para os botões de quantidade e remoção
+            document.querySelectorAll('.decrease-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.getAttribute('data-index'));
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.increase-quantity').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.getAttribute('data-index'));
+                    cart[index].quantity += 1;
+                    updateCart();
+                });
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCart();
+                    showNotification('Item removido do carrinho!');
+                });
+            });
+        }
+
+        // Abrir/fechar carrinho
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        // Finalizar pedido
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Seu carrinho está vazio!');
+                return;
+            }
+            
+            alert('Pedido finalizado com sucesso! Em breve entraremos em contato para confirmar.');
+            cart = [];
+            updateCart();
+            cartModal.style.display = 'none';
+        });
+
+        // Formulário de reserva
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            
+            // Mostrar modal de sucesso
+            document.getElementById('successModal').style.display = 'flex';
+            
+            this.reset();
+        });
+
+        // Fechar modal de sucesso
+        document.getElementById('closeSuccessModal').addEventListener('click', () => {
+            document.getElementById('successModal').style.display = 'none';
+        });
+
+        // Notificação
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Fechar modais ao clicar fora
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+            if (e.target === document.getElementById('successModal')) {
+                document.getElementById('successModal').style.display = 'none';
+            }
+        });
+
+        // Data mínima para reservas (hoje)
+        const today = new Date().toISOString().split('T')[0];
+        g('date').setAttribute('min', today);
+    </script>
+</body>
+</html>
